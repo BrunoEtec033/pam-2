@@ -8,7 +8,7 @@ export default function App() {
     redirect: 'follow'
   };
 
-  fetch("http://localhost:3000/posts", requestOptions)
+  fetch("https://ubiquitous-space-fishstick-4jpjj4gx6vjf5rq6-3000.app.github.dev/filmes", requestOptions)
     .then(response => response.json())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
