@@ -24,7 +24,7 @@
     {
       "id": 2,
       "nome": "The Dark Knight",
-      "img_capa": "https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg",
+      "img_capa": "https://upload.wikimedia.org/wikipedia/pt/d/d1/The_Dark_Knight.jpg",
       "ano": "2008",
       "sinopse": "Batman enfrenta o Coringa, um criminoso caótico que ameaça mergulhar Gotham City na anarquia e testar os limites morais do herói.",
       "elenco": [
@@ -60,6 +60,27 @@
           "nome": "Chris Evans",
           "personagem": "Steve Rogers / Capitão América",
           "imagem": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Chris_Evans_SDCC_2014.jpg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Inception",
+      "img_capa": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
+      "ano": "2010",
+      "sinopse": "Um ladrão especializado em extrair segredos do subconsciente durante o sono é contratado para realizar uma tarefa inversa: plantar uma ideia na mente de um alvo.",
+      "elenco": [
+        {
+          "id": 1,
+          "nome": "Leonardo DiCaprio",
+          "personagem": "Dom Cobb",
+          "imagem": "https://upload.wikimedia.org/wikipedia/commons/4/46/Leonardo_DiCaprio_2014.jpg"
+        },
+        {
+          "id": 2,
+          "nome": "Joseph Gordon-Levitt",
+          "personagem": "Arthur",
+          "imagem": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Joseph_Gordon-Levitt_SDCC_2012.jpg"
         }
       ]
     }
