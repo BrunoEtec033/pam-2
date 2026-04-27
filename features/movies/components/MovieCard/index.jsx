@@ -7,14 +7,15 @@ export default function MovieCard({ movie, onPress, width }) {
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.container, { width: width }]}>        
         <Image
-          source={{ uri: movie.img_capa }}
+        
+          source={{ uri: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}}
           style={styles.image}
         />
         <Text style={styles.title}>
-          {movie.nome}
+          {movie.title}
         </Text>
         <Text style={styles.year}>
-          {movie.ano}
+          {movie.release_date}
         </Text>
 
       </View>

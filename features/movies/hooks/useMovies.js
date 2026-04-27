@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMovies } from "../services/movieService";
+import { getPopularMovies } from "../services/movieService";
 
 export const useMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -7,7 +7,7 @@ export const useMovies = () => {
 
   const fetchMovies = async () => {
     try {
-      const data = await getMovies();
+      const data = await getPopularMovies();
       setMovies(data);
     } catch (error) {
       console.log("Erro ao buscar filmes:", error);
@@ -29,7 +29,7 @@ export const useMovies = () => {
 
 /*
 O hook useMovies é responsável por gerenciar o estado dos filmes e o estado de carregamento. 
-Ele utiliza a função getMovies do serviço movieService para buscar os dados da API. 
+Ele utiliza a função getPopularMovies do serviço movieService para buscar os dados da API. 
 O hook também expõe uma função refresh para permitir que a tela MovieList possa atualizar os dados manualmente, caso necessário.
 
 Como o refresh funciona?
