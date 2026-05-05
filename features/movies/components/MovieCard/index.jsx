@@ -2,20 +2,29 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 
+/**
+ * Renderiza um card de filme com imagem de capa, título e ano de lançamento.
+ *
+ * @param {Object} props - Propriedades do componente.
+ * @param {Movie} props.movie - Dados do filme a ser exibido.
+ * @param {() => void} props.onPress - Função chamada ao tocar no card.
+ * @param {number|string} props.width - Largura do card.
+ * @returns {JSX.Element} Card clicável com informações do filme.
+ */
 export default function MovieCard({ movie, onPress, width }) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.container, { width: width }]}>        
         <Image
         
-          source={{ uri: `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}}
+          source={{ uri: movie.img_capa }}
           style={styles.image}
         />
         <Text style={styles.title}>
-          {movie.title}
+          {movie.nome}
         </Text>
         <Text style={styles.year}>
-          {movie.release_date}
+          {movie.ano}
         </Text>
 
       </View>

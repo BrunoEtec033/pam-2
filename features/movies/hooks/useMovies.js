@@ -1,13 +1,29 @@
-import { useEffect, useState } from "react";
-import { getPopularMovies } from "../services/movieService";
+/**
+ * Hook para buscar e gerenciar a lista de filmes populares.
+ *
+ * @returns {{
+ *   movies: Array<Movie>,
+ *   loading: boolean,
+ *   refresh: () => Promise<void>
+ * }} Objeto com:
+ * - `movies`: lista de filmes carregados da API;
+ * - `loading`: indica se a busca inicial ainda está em andamento;
+ * - `refresh`: função assíncrona para atualizar manualmente a lista de filmes.
+ */
+ 
 
-export const useMovies = () => {
+import { useEffect, useState } from "react";
+import { getPopularMovies, getElencoMovie, getMovieDetails } from "../services/movieService";
+
+
+
+export const useMovies = (page=1) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchMovies = async () => {
     try {
-      const data = await getPopularMovies();
+      const data = await getPopularMovies(page);
       setMovies(data);
     } catch (error) {
       console.log("Erro ao buscar filmes:", error);
@@ -18,7 +34,7 @@ export const useMovies = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [page]);
 
   return {
     movies,
@@ -27,13 +43,62 @@ export const useMovies = () => {
   };
 };
 
-/*
-O hook useMovies é responsável por gerenciar o estado dos filmes e o estado de carregamento. 
-Ele utiliza a função getPopularMovies do serviço movieService para buscar os dados da API. 
-O hook também expõe uma função refresh para permitir que a tela MovieList possa atualizar os dados manualmente, caso necessário.
+/**
+ * Hook para buscar e gerenciar o elenco de um filme específico.
+ *
+ * @param {number|string} movieId - ID do filme usado na consulta do elenco.
+ * @returns {{
+ *  elenco: Array<Actor>,
+ *  loading: boolean
+ * }} Objeto com:
+ * - `elenco`: lista de integrantes do elenco do filme informado.
+ */
 
-Como o refresh funciona?
-R: A função refresh é simplesmente uma referência à função fetchMovies, que é responsável por buscar os filmes da API. 
-Quando a função refresh é chamada, ela executa fetchMovies, que realiza a chamada à API para obter os dados mais recentes dos filmes e atualiza o estado do hook com esses dados. 
-Isso permite que a tela MovieList possa solicitar uma atualização dos filmes a qualquer momento, garantindo que os dados exibidos estejam sempre atualizados.
-*/
+export const useElencoMovie = (movieId) => {
+  const [elenco, setElenco] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getElencoMovie(movieId);
+        setElenco(data);
+      } catch (error) {
+        console.log("Erro ao buscar elenco do filme:", error);
+      }
+        finally {
+        setLoading(false);
+      }
+    })();
+  }, [movieId]);
+  
+  return { elenco, loading };
+};
+
+/**
+  * Hook para buscar e gerenciar os detalhes de um filme específico.
+  * @param {number|string} movieId - ID do filme usado na consulta dos detalhes.
+  * @return {{
+  *   movieDetails: MovieDetails|null,
+  *   loading: boolean
+  * }}
+ */
+export const useMovieDetails = (movieId) => {
+  const [movieDetails, setMovieDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getMovieDetails(movieId);
+        setMovieDetails(data);
+      } catch (error) {
+        console.log("Erro ao buscar detalhes do filme:", error);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [movieId]);
+  console.log("useMovieDetails - movieDetails:", movieDetails);
+  return { movieDetails, loading };
+};

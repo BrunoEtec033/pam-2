@@ -1,15 +1,18 @@
 import React from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useMovies } from "../../hooks/useMovies";
 import MovieCard from "../../components/MovieCard";
+import Loading from "../../../../components/Loading";
 import { ROUTES } from "../../../../constants/routes";
 
 export default function MovieList() {
   const { movies, loading } = useMovies();
   const navigation = useNavigation();
 
-  if (loading) { return <Text>Carregando...</Text>;}
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <View style={{ padding: 16, flex: 1 }}>
@@ -23,9 +26,7 @@ export default function MovieList() {
           <MovieCard
             movie={item}
             onPress={() =>
-              navigation.navigate(ROUTES.MOVIE_DETAILS, {
-                movie: item,
-              })
+              navigation.navigate(ROUTES.MOVIE_DETAILS, {movie: item, movie_id: item.id})
             }
             width={"45vw"}
           />
