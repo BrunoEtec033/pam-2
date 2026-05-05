@@ -99,6 +99,5 @@ export const useMovieDetails = (movieId) => {
       }
     })();
   }, [movieId]);
-  console.log("useMovieDetails - movieDetails:", movieDetails);
   return { movieDetails, loading };
 };

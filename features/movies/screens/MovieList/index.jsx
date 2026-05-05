@@ -26,7 +26,7 @@ export default function MovieList() {
           <MovieCard
             movie={item}
             onPress={() =>
-              navigation.navigate(ROUTES.MOVIE_DETAILS, {movie: item, movie_id: item.id})
+              navigation.navigate(ROUTES.MOVIE_DETAILS, {movie_id: item.id})
             }
             width={"45vw"}
           />

@@ -53,6 +53,7 @@ export default function MovieDetails() {
       {backGroundImg && (
         <Image source={{ uri: backGroundImg }} style={styles.bgImage} />
       )}
+      
       { /* Conteúdo principal sobreposto à imagem de fundo */}
       <View style={{padding: 16}}>
 
